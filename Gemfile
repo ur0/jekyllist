@@ -24,6 +24,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 # Better errors
 gem 'better_errors'
+# Faraday HTTP cache, so that we don't spam GitHub's API.
+gem 'faraday-http-cache'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
