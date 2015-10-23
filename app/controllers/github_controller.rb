@@ -3,7 +3,7 @@ class GithubController < ApplicationController
   def redirect_to_github
     # Redirect the user to GitHub for OAuth
     address = github.authorize_url scope: Jekyllist.scope
-    redirect_to logged_in? ? '/' : address
+    redirect_to logged_in? ? root_path : address
   end
 
   def callback
@@ -12,8 +12,8 @@ class GithubController < ApplicationController
     access_token = github.get_token authorization_code
     @user = create_user(access_token.token)
     if @user
-    	log_in(@user)
-    	redirect_to '/'
+    	log_in(@user.login)
+    	redirect_to root_path
     else
     	redirect_to_github
     end		

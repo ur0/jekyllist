@@ -5,8 +5,8 @@ module AuthenticationHelper
 	end
 	
 	def current_user
-		# Return the contents of the signed login cookie
-		cookies.signed[:login]
+		# Return the user identified by the cookie
+		User.find_by_login(cookies.signed[:login])
 	end
 	
 	def logged_in?

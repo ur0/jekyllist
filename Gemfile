@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'better_errors'
 # Faraday HTTP cache, so that we don't spam GitHub's API.
 gem 'faraday-http-cache'
+# Bootstrap framework
+gem 'bootstrap-sass', '~> 3.3.5'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

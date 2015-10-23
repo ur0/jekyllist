@@ -1,0 +1,15 @@
+<div class="container">
+  <aside>
+    <% @posts.each do |post| %>
+    <row>
+      <a href="/editor?file=<%= post %>&repo=<%= params[:repo] %>"><%= post %></a>
+    </row> <br />
+    <% end %>
+  </aside>
+  <%= form_tag save_path, method: 'post' do %>
+    <%= text_field_tag :repo, @repo, class: 'hidden' %>
+    <%= text_field_tag :file, @file, class: 'hidden' %>
+    <%= text_area_tag :input, raw(@content), class: 'col-md-6' %>
+    <%= submit_tag 'Save', class: 'btn btn-primary btn-success' %>
+  <% end %>
+</div>

@@ -13,3 +13,7 @@
  *= require_tree .
  *= require_self
  */
+
+/* Import the Bootstrap framework SCSS */
+@import "bootstrap-sprockets";
+@import "bootstrap";
