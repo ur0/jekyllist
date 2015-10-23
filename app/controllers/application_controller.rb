@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include AuthenticationHelper
 
   protected
+
   def github
     @github ||= Github.new client_id: Jekyllist.client_id, client_secret: Jekyllist.client_secret
   end

@@ -9,7 +9,7 @@ class EditorController < ApplicationController
     @repo = params[:repo]
     @posts = []
     @file = "_posts/#{params[:file]}"
-    github.repos.contents.get(current_user.login, @repo, '_posts').each {|f| @posts << f.name}
+    github.repos.contents.get(current_user.login, @repo, '_posts').each { |f| @posts << f.name }
     if params[:file]
       @content = Base64.decode64(github.repos.contents.get(current_user.login, @repo, @file).content).gsub("\n", '&#10;')
     end
