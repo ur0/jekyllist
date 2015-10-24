@@ -1,15 +1,17 @@
 class EditorController < ApplicationController
   def select_repo
-    @repos = github.repos.list
-    @repo_names = []
-    @repos.each { |repo| @repo_names << repo.name }
   end
 
   def editor
+    @repos = github.repos.list
+    @repo_names = []
+    @repos.each { |repo| @repo_names << repo.name }
     @repo = params[:repo]
     @posts = []
     @file = "_posts/#{params[:file]}"
-    github.repos.contents.get(current_user.login, @repo, '_posts').each { |f| @posts << f.name }
+    if @repo
+      github.repos.contents.get(current_user.login, @repo, '_posts').each { |f| @posts << f.name }
+    end
     if params[:file]
       @content = Base64.decode64(github.repos.contents.get(current_user.login, @repo, @file).content).gsub("\n", '&#10;')
     end

@@ -1,15 +1,48 @@
+
+
 <div class="container">
+  <% if @repo %>
   <aside>
     <% @posts.each do |post| %>
     <row>
       <a href="/editor?file=<%= post %>&repo=<%= params[:repo] %>"><%= post %></a>
-    </row> <br />
+    </row>
+    <br />
     <% end %>
   </aside>
   <%= form_tag save_path, method: 'post' do %>
-    <%= text_field_tag :repo, @repo, class: 'hidden' %>
-    <%= text_field_tag :file, @file, class: 'hidden' %>
-    <%= text_area_tag :input, raw(@content), class: 'col-md-6' %>
-    <%= submit_tag 'Save', class: 'btn btn-primary btn-success' %>
+  <%= text_field_tag :repo, @repo, class: 'hidden' %>
+  <%= text_field_tag :file, @file, class: 'hidden' %>
+  <%= text_area_tag :input, raw(@content), class: 'col-md-6' %>
+  <%= submit_tag 'Save', class: 'btn btn-primary btn-success' %>
+  <% end %>
+  <% else %>
+  <% repos = []
+    @repo_names.each {|r| repos << [r, r]} %>
+  <div class="modal fade" id="select-repo-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Select a repository</h4>
+        </div>
+        <div class="modal-body">
+          <%= form_tag('/editor', method: 'get', class: 'text-center') do %>
+          <%= select_tag :repo, options_for_select(repos), class: 'form-control' %> <br />
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag 'Select', class: 'btn btn-primary btn-submit btn-success' %>
+          <% end %>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
   <% end %>
 </div>
+<script>
+  $('#select-repo-modal').modal('show');
+</script>
