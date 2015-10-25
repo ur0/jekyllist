@@ -14,6 +14,36 @@
  *= require_self
  */
 
-/* Import the Bootstrap framework SCSS */
+/* Import the Bootstrap framework CSS */
+@import 'base/epiceditor';
+@import 'preview/bartik';
+@import 'preview/github';
+@import 'preview/preview-dark';
+@import 'editor/epic-dark';
+@import 'editor/epic-light';
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+.green-btn {
+  background-color: #27ae60;
+  color: white;
+}
+.green-btn:hover, .green-btn:focus {
+  background-color: transparent;
+  color: black;
+  border-color: #27ae60;
+}
+.no-bottom {
+  margin-bottom: 0 !important;
+}
+.custom-nav {
+  background-color: transparent;
+}
+#footer-main {
+  clear: both;
+  width: 100%;
+  background-color: #E1E4E4;
+  padding: 1.5rem;
+}

@@ -1,4 +1,16 @@
-<h1>Pages#index</h1>
-<p>Find me in app/views/pages/index.html.erb</p>
-
-<% console %>
+<div class="jumbotron jumbotron-default green">
+  <div class="container">
+    <h1 class="text-center">Jekyllist</h1>
+    <p class="lead text-center">Jekyllist makes Jekyll awesome.</p>
+  </div>
+</div>
+<div id="how" class="container">
+  <h1 class="text-center">Never fire up a Git client to write a Jekyll post</h3>
+  <p class="lead text-center">
+    You got it.<em> Jekyllist is a web client for Jekyll.</em> <br />
+    I created it because I found firing up my laptop just to write a blog post tiring. Yeah. Just sign in with GitHub and get started in no time.
+  </p>
+</div>
+<div id="cta" class="container-fluid">
+  <%= link_to "Log in with GitHub", login_path, class: 'btn btn-lg green-btn text-center element-center'%>
+</div>

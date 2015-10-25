@@ -1,3 +1,15 @@
 // Place all the styles related to the editor controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#sidebar {
+  margin-top: 0.5rem;
+}
+#epiceditor {
+  margin-top: 7rem;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  clear: none;
+}
+.savebtn {
+  margin-left: 1.5rem;
+}

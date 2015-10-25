@@ -1,3 +1,26 @@
 // Place all the styles related to the Pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#login-button {
+  color: white;
+  margin-top: 0.2rem;
+  margin-bottom: 0.2rem;
+}
+#login-button:focus,
+#login-button:hover {
+  color: black;
+}
+.element-center {
+  display: block !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+.green {
+  background-color: #27ae60 !important;
+  color: white !important;
+}
+#cta {
+  margin-top: 2rem;
+  background-color: #2ecc71;
+  padding: 2rem;
+}
