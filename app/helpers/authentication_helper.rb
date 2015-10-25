@@ -11,6 +11,10 @@ module AuthenticationHelper
 
   def logged_in?
     # Does the login cookie exist?
-    !!current_user
+    cookies.signed[:login].present?
+  end
+
+  def require_login
+    redirect_to '/login' unless logged_in?
   end
 end

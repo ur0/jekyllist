@@ -1,6 +1,5 @@
 class EditorController < ApplicationController
-  def select_repo
-  end
+  before_action :require_login
 
   def editor
     @repos = github.repos.list
