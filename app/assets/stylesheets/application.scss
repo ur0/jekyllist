@@ -15,12 +15,6 @@
  */
 
 /* Import the Bootstrap framework CSS */
-@import 'base/epiceditor';
-@import 'preview/bartik';
-@import 'preview/github';
-@import 'preview/preview-dark';
-@import 'editor/epic-dark';
-@import 'editor/epic-light';
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome-sprockets";
@@ -46,4 +40,7 @@
   width: 100%;
   background-color: #E1E4E4;
   padding: 1.5rem;
+}
+html {
+  padding: 0;
 }
