@@ -14,7 +14,6 @@ class EditorController < ApplicationController
     if params[:file]
       @content = Base64.decode64(github.repos.contents.get(current_user.login, @repo, @file).content).gsub("\n", '&#10;')
     end
-    render layout: 'index'
   end
 
   def save
