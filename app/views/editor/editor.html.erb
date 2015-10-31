@@ -1,5 +1,5 @@
 <% if @repo %>
-<div id="sidebar" class="col-xs-6 col-sm-3">
+<div id="sidebar" class="col-xs-12 col-md-3">
   <h2 class="text-center">Posts</h2>
   <a href="/editor?file=new&repo=<%= @repo %>" class="list-group-item post-link">New Post</a>
   <% @posts.each do |post| %>
@@ -10,7 +10,7 @@
 <div class="container" id="editor">
 <%= form_tag save_path, method: 'post' do %>
 <%= text_field_tag :repo, @repo, class: 'hidden'%>
-<div class="col-md-9 col-sm-12 col-xs-12">
+<div class="col-xs-12 col-md-9">
   <% @file,@content = "#{Time.zone.now.to_date.strftime('%d-%m-%Y')}-Your-Awesome-Post.md",nil if params[:file] == 'new' %>
   <%= text_field_tag :file, @file, class: 'form-control', placeholder: 'File name, eg: _posts/your-post-name.md' %>
   <div id="epiceditor">
