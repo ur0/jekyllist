@@ -4,12 +4,23 @@
 #sidebar {
   margin-top: 0.5rem;
 }
-#epiceditor {
+
+#file {
   margin-top: 7rem;
+}
+
+#epiceditor {
+  margin-top: 1rem;
   margin-bottom: 1rem;
   border-radius: 1rem;
   clear: none;
 }
-.savebtn {
-  margin-left: 1.5rem;
+
+@media (min-width: 780px) {
+  #editor {
+    height: 90vh;
+    #epiceditor {
+      height: 50vh;
+    }
+  }
 }

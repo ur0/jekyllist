@@ -7,12 +7,15 @@ class EditorController < ApplicationController
     @repos.each { |repo| @repo_names << repo.name }
     @repo = params[:repo]
     @posts = []
-    @file = "_posts/#{params[:file]}"
+    @file = params[:file]
+    fullpath = "_posts/#{@file}"
     if @repo
       github.repos.contents.get(current_user.login, @repo, '_posts').each { |f| @posts << f.name }
     end
-    if params[:file]
-      @content = Base64.decode64(github.repos.contents.get(current_user.login, @repo, @file).content).gsub("\n", '&#10;')
+    if params[:file] && params[:file] != 'new'
+      @content = Base64.decode64(github.repos.contents.get(current_user.login, @repo, fullpath).content).gsub("\n", '&#10;')
+    else
+      @content = '&#10;'
     end
   end
 
@@ -21,9 +24,18 @@ class EditorController < ApplicationController
     @repo = params[:repo]
     @file = params[:file]
     @input = params[:input].gsub("\r\n", "\n")
-    file = contents.find current_user.login, @repo, @file
-    contents.update current_user.login, @repo, @file, path: @file, message: "Updated #{@file}.", content: @input, sha: file.sha
-    redirect_to editor_path
+    @posts = []
+    fullpath = "_posts/#{@file}"
+    github.repos.contents.get(current_user.login, @repo, '_posts').each { |f| @posts << f.name }
+    if @posts.include? @file
+      # Existing post
+      file = contents.find current_user.login, @repo, fullpath
+      contents.update current_user.login, @repo, fullpath, path: fullpath, message: "Updated #{@file}.", content: @input, sha: file.sha
+    else
+      # New post
+      contents.create current_user.login, @repo, fullpath, path: fullpath, message: "Created #{@file}.", content: @input
+    end
+    redirect_to "#{editor_path}?repo=#{@repo}&file=#{@file}"
   end
 
   private

@@ -1,19 +1,23 @@
 <% if @repo %>
 <div id="sidebar" class="col-xs-6 col-sm-3">
   <h2 class="text-center">Posts</h2>
+  <a href="/editor?file=new&repo=<%= @repo %>" class="list-group-item post-link">New Post</a>
   <% @posts.each do |post| %>
-    <a href="/editor?file=<%= post %>&repo=<%= params[:repo] %>" class="list-group-item post-link"><%= post %></a>
+    <a href="/editor?file=<%= post %>&repo=<%= @repo %>" class="list-group-item post-link"><%= post %></a>
   <% end %>
 </div>
 
-<div class="container">
+<div class="container" id="editor">
 <%= form_tag save_path, method: 'post' do %>
-<%= text_field_tag :repo, @repo, class: 'hidden' %>
-<%= text_field_tag :file, @file, class: 'hidden' %>
-<div id="epiceditor" class="col-md-9 col-sm-3 col-xs-3">
-  <%= text_area_tag :input, raw(@content)%>
+<%= text_field_tag :repo, @repo, class: 'hidden'%>
+<div class="col-md-9 col-sm-12 col-xs-12">
+  <% @file,@content = "#{Time.zone.now.to_date.strftime('%d-%m-%Y')}-Your-Awesome-Post.md",nil if params[:file] == 'new' %>
+  <%= text_field_tag :file, @file, class: 'form-control', placeholder: 'File name, eg: _posts/your-post-name.md' %>
+  <div id="epiceditor">
+    <%= text_area_tag :input, raw(@content)%>
+  </div>
+  <%= submit_tag 'Save', class: 'btn btn-primary btn-success savebtn' %>
 </div>
-<%= submit_tag 'Save', class: 'btn btn-primary btn-success savebtn' %>
 <% end %>
 <% else %>
 <% repos = []
