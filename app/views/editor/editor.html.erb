@@ -12,7 +12,7 @@
 <%= text_field_tag :repo, @repo, class: 'hidden'%>
 <div class="col-xs-12 col-md-9">
   <% @file,@content = "#{Time.zone.now.to_date.strftime('%d-%m-%Y')}-Your-Awesome-Post.md",nil if params[:file] == 'new' %>
-  <%= text_field_tag :file, @file, class: 'form-control', placeholder: 'File name, eg: _posts/your-post-name.md' %>
+  <%= text_field_tag :file, @file, class: 'form-control', placeholder: 'File name' %>
   <div id="epiceditor">
     <%= text_area_tag :input, raw(@content)%>
   </div>
